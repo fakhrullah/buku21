@@ -6,6 +6,10 @@
       :quiz-name="quiz.name"
       :questions-sum="questionsSum"></quiz-welcome-page>
     <!-- questions - contain a lot of question -->
+    <quiz-question
+      v-for="q in questions" 
+      :question="q.question"
+      :answers="q.answers"></quiz-question>
       <!-- question 1 -->
       <!-- question 2 -->
       <!-- question 3 -->
@@ -21,11 +25,12 @@
 
 <script>
 import QuizWelcomePage from '@/components/QuizWelcomePage'
+import QuizQuestion from '@/components/QuizQuestion'
 
 export default {
   name: 'quiz',
   components: {
-    QuizWelcomePage
+    QuizWelcomePage, QuizQuestion
   },
   data () {
     return {
@@ -33,7 +38,50 @@ export default {
         name: 'Kuiz Sejarah'
       },
       currentView: 'quiz-welcome-page',
-      questions: []
+      questions: [
+        {
+          type: 'objective',
+          question: 'Yang manakah benar tentang Tun Mahathir Mohamad?',
+          answers: [
+            {
+              answer: 'Pernah menjadi Menteri Besar Terengganu',
+              isCorrect: false,
+              isChoosed: false
+            },
+            {
+              answer: 'Pernah menjadi Yang Dipertuan Agong malaysia',
+              isCorrect: false,
+              isChoosed: false
+            },
+            {
+              answer: 'Pernah menjadi Perdana menteri Malaysia',
+              isCorrect: true,
+              isChoosed: false
+            }
+          ]
+        },
+        {
+          type: 'objective',
+          question: 'Yang manakah benar tentang Tun Hussein Onn?',
+          answers: [
+            {
+              answer: 'Perdana menteri Malaysia pertama',
+              isCorrect: false,
+              isChoosed: false
+            },
+            {
+              answer: 'Perdana menteri Malaysia kedua',
+              isCorrect: true,
+              isChoosed: false
+            },
+            {
+              answer: 'Perdana menteri Malaysia ketiga',
+              isCorrect: false,
+              isChoosed: false
+            }
+          ]
+        }
+      ]
     }
   },
   computed: {
