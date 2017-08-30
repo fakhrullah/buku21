@@ -16,21 +16,27 @@
       <!-- question 4 -->
       <!-- question 5 -->
     <!-- result page - show how much user got correct -->
+    <quiz-result
+      :mark="result.mark"
+      :counting-percent="result.countingProgress"
+      ></quiz-result>
     <!-- review page - show list of question with status correct or wrong, 
     and clickable to question page 
     and show user answer and correct answer -->
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
+    <button class="count" @click="getResult">Count</button>
   </div>
 </template>
 
 <script>
 import QuizWelcomePage from '@/components/QuizWelcomePage'
 import QuizQuestion from '@/components/QuizQuestion'
+import QuizResult from '@/components/QuizResult'
 
 export default {
   name: 'quiz',
   components: {
-    QuizWelcomePage, QuizQuestion
+    QuizWelcomePage, QuizQuestion, QuizResult
   },
   data () {
     return {
@@ -81,7 +87,11 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      result: {
+        mark: 0,
+        countingProgress: 0
+      }
     }
   },
   computed: {
@@ -93,8 +103,46 @@ export default {
     isCurrentView (view) {
       if (view === this.currentView) return true
       else return false
+    },
+    getResult () {
+      console.log('miaw')
+      // Start counting
+      this.updateProgressBar('start', 0, this.questions.length, 1000)
+
+      // Get result for objective question
+      this.questions.forEach((q, index) => {
+        // counting mark on n-th question
+        this.updateProgressBar('counting', index + 1, this.questions.length, 1000 + (index + 1) * 1000)
+
+        q.answers.forEach(a => {
+          if (a.isChoosed) {
+            if (a.isCorrect) this.result.mark++
+          }
+        })
+      })
+
+      // Finish count
+      this.updateProgressBar('done', 100, 100, 1000 + this.questions.length * 1000)
+    },
+    updateProgressBar (status, nth = 0, all = 100, delay = 1000) {
+      let progress
+      if (status === 'start') progress = 10
+      else if (status === 'done') progress = 100
+      else progress = countProgress(nth, all)
+      setTimeout(() => {
+        this.result.countingProgress = progress
+      }, delay)
     }
   }
+}
+
+function countProgress (nth = 0, all = 100) {
+  // Only set progress bar from 10 to 50
+  // because another 50 to 100 is for virtual progress
+  let minProgress = 10
+  let maxProgress = 50
+  let progress = (maxProgress - minProgress) * (nth / all) + minProgress
+  return progress
 }
 </script>
 
