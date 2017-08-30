@@ -23,6 +23,9 @@
     <!-- review page - show list of question with status correct or wrong, 
     and clickable to question page 
     and show user answer and correct answer -->
+    <quiz-review
+      :questions="userSubmited"
+      ></quiz-review>
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
     <button class="count" @click="getResult">Count</button>
   </div>
@@ -32,11 +35,12 @@
 import QuizWelcomePage from '@/components/QuizWelcomePage'
 import QuizQuestion from '@/components/QuizQuestion'
 import QuizResult from '@/components/QuizResult'
+import QuizReview from '@/components/QuizReview'
 
 export default {
   name: 'quiz',
   components: {
-    QuizWelcomePage, QuizQuestion, QuizResult
+    QuizWelcomePage, QuizQuestion, QuizResult, QuizReview
   },
   data () {
     return {
@@ -86,6 +90,22 @@ export default {
               isChoosed: false
             }
           ]
+        },
+        {
+          type: 'objective',
+          question: 'Adakah betul sama maksud dengan benar?',
+          answers: [
+            {
+              answer: 'Betul',
+              isCorrect: true,
+              isChoosed: false
+            },
+            {
+              answer: 'Salah',
+              isCorrect: false,
+              isChoosed: false
+            }
+          ]
         }
       ],
       result: {
@@ -97,6 +117,24 @@ export default {
   computed: {
     questionsSum () {
       return parseInt(this.questions.length)
+    },
+    userSubmited () {
+      let userSubmited = []
+      this.questions.forEach(q => {
+        let submited = {}
+        submited.question = q.question
+        submited.gotCorrect = false
+        // only handle objective question
+        q.answers.forEach(a => {
+          if (a.isCorrect) submited.correctAnswer = a.answer
+          if (a.isChoosed) {
+            submited.userAnswer = a.answer
+            if (a.isCorrect) submited.gotCorrect = true
+          }
+        })
+        userSubmited.push(submited)
+      })
+      return userSubmited
     }
   },
   methods: {
