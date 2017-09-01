@@ -33,22 +33,33 @@
       ></quiz-review>
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
     <div class="quiz-navigation">
-      <button class="start" @click="startQuiz">
+      <button v-show="isNeededNavigations('quiz-start-button')"
+        class="start"
+        @click="startQuiz">
         Mula
       </button>
-      <button class="prev prev-page prev-question" @click="goToPreviousQuestion">
+      <button v-show="isNeededNavigations('quiz-goto-prev-button')"
+        class="prev prev-page prev-question"
+        @click="goToPreviousQuestion">
         &lt;--
       </button>
-      <button class="next next-page next-question" @click="goToNextQuestion">
+      <button v-show="isNeededNavigations('quiz-goto-next-button')"
+        class="next next-page next-question"
+        @click="goToNextQuestion">
         --&gt;
       </button>
-      <button class="count" @click="getResult">
+      <button v-show="isNeededNavigations('quiz-get-result-button')"
+        class="count"
+        @click="getResult">
         Kira Markah
       </button>
-      <button class="review" @click="reviewQuiz">
+      <button v-show="isNeededNavigations('quiz-review-answers-button')"
+        class="review"
+        @click="reviewQuiz">
         Rumusan
       </button>
-      <button class="menu">
+      <button v-show="isNeededNavigations('quiz-menu-button')"
+        class="menu">
         Menu
       </button>
     </div>
@@ -72,6 +83,14 @@ export default {
         name: 'Kuiz Sejarah'
       },
       currentView: 'quiz-welcome-page',
+      neededNavigationsButton: [
+        'quiz-start-button',
+        '',
+        '',
+        '',
+        '',
+        ''
+      ],
       questions: [
         {
           type: 'objective',
@@ -166,6 +185,9 @@ export default {
       if (view === this.currentView) return true
       else return false
     },
+    isNeededNavigations (navigationButton) {
+      return this.neededNavigationsButton.includes(navigationButton)
+    },
     getResult () {
       console.log('miaw')
       // Start counting
@@ -198,6 +220,7 @@ export default {
     startQuiz () {
       console.log('start quiz')
       this.currentView = 'quiz-question-0'
+      this.neededNavigationsButton = navigationsOnPage('quiz-question')
     },
     goToNextQuestion () {
       let currentQuestionIndex = parseInt(this.currentView.split('-')[2])
@@ -207,6 +230,7 @@ export default {
       // go to result page on last question
       if (currentQuestionIndex === this.questions.length - 1) {
         this.currentView = 'quiz-result'
+        this.neededNavigationsButton = navigationsOnPage('quiz-result')
       } else {
         this.currentView = 'quiz-question-' + nextIndex
       }
@@ -221,6 +245,7 @@ export default {
         if (this.currentView === 'quiz-result') {
           // move to last question
           this.currentView = 'quiz-question-' + (this.questions.length - 1)
+          this.neededNavigationsButton = navigationsOnPage('quiz-question')
         }
         return
       } else {
@@ -239,6 +264,7 @@ export default {
     },
     reviewQuiz () {
       this.currentView = 'quiz-review'
+      this.neededNavigationsButton = navigationsOnPage('quiz-review')
     }
   }
 }
@@ -250,6 +276,51 @@ function countProgress (nth = 0, all = 100) {
   let maxProgress = 50
   let progress = (maxProgress - minProgress) * (nth / all) + minProgress
   return progress
+}
+function navigationsOnPage (quizPage) {
+  let navsButton = {
+    'quiz-start': [
+      'quiz-start-button',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ],
+    'quiz-question': [
+      '',
+      'quiz-goto-prev-button',
+      'quiz-goto-next-button',
+      '',
+      '',
+      ''
+    ],
+    'quiz-result': [
+      '',
+      'quiz-goto-prev-button',
+      '',
+      'quiz-get-result-button',
+      'quiz-review-answers-button',
+      ''
+    ],
+    'quiz-review': [
+      '',
+      '',
+      '',
+      '',
+      'quiz-review-answers-button',
+      ''
+    ],
+    'quiz-all': [
+      'quiz-start-button',
+      'quiz-goto-prev-button',
+      'quiz-goto-next-button',
+      'quiz-get-result-button',
+      'quiz-review-answers-button',
+      'quiz-menu-button'
+    ]
+  }
+  return navsButton[quizPage]
 }
 </script>
 
