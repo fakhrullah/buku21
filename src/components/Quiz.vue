@@ -39,7 +39,7 @@
       <button class="prev prev-page prev-question">
         &lt;--
       </button>
-      <button class="next next-page next-question">
+      <button class="next next-page next-question" @click="goToNextQuestion">
         --&gt;
       </button>
       <button class="count" @click="getResult">
@@ -198,6 +198,18 @@ export default {
     startQuiz () {
       console.log('start quiz')
       this.currentView = 'quiz-question-0'
+    },
+    goToNextQuestion () {
+      let currentQuestionIndex = parseInt(this.currentView.split('-')[2])
+      console.log('currentQuestionIndex ' + currentQuestionIndex)
+
+      let nextIndex = currentQuestionIndex + 1
+      // go to result page on last question
+      if (currentQuestionIndex === this.questions.length - 1) {
+        this.currentView = 'quiz-result'
+      } else {
+        this.currentView = 'quiz-question-' + nextIndex
+      }
     }
   }
 }
