@@ -72,6 +72,8 @@ import QuizQuestion from '@/components/QuizQuestion'
 import QuizResult from '@/components/QuizResult'
 import QuizReview from '@/components/QuizReview'
 
+import questions from '../data/questions.json'
+
 export default {
   name: 'quiz',
   components: {
@@ -91,66 +93,7 @@ export default {
         '',
         ''
       ],
-      questions: [
-        {
-          type: 'objective',
-          question: 'Yang manakah benar tentang Tun Mahathir Mohamad?',
-          answers: [
-            {
-              answer: 'Pernah menjadi Menteri Besar Terengganu',
-              isCorrect: false,
-              isChoosed: false
-            },
-            {
-              answer: 'Pernah menjadi Yang Dipertuan Agong malaysia',
-              isCorrect: false,
-              isChoosed: false
-            },
-            {
-              answer: 'Pernah menjadi Perdana menteri Malaysia',
-              isCorrect: true,
-              isChoosed: false
-            }
-          ]
-        },
-        {
-          type: 'objective',
-          question: 'Yang manakah benar tentang Tun Hussein Onn?',
-          answers: [
-            {
-              answer: 'Perdana menteri Malaysia pertama',
-              isCorrect: false,
-              isChoosed: false
-            },
-            {
-              answer: 'Perdana menteri Malaysia kedua',
-              isCorrect: true,
-              isChoosed: false
-            },
-            {
-              answer: 'Perdana menteri Malaysia ketiga',
-              isCorrect: false,
-              isChoosed: false
-            }
-          ]
-        },
-        {
-          type: 'objective',
-          question: 'Adakah betul sama maksud dengan benar?',
-          answers: [
-            {
-              answer: 'Betul',
-              isCorrect: true,
-              isChoosed: false
-            },
-            {
-              answer: 'Salah',
-              isCorrect: false,
-              isChoosed: false
-            }
-          ]
-        }
-      ],
+      questions: questions,
       result: {
         mark: 0,
         countingProgress: 0
