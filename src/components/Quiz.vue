@@ -36,7 +36,7 @@
       <button class="start" @click="startQuiz">
         Mula
       </button>
-      <button class="prev prev-page prev-question">
+      <button class="prev prev-page prev-question" @click="goToPreviousQuestion">
         &lt;--
       </button>
       <button class="next next-page next-question" @click="goToNextQuestion">
@@ -209,6 +209,32 @@ export default {
         this.currentView = 'quiz-result'
       } else {
         this.currentView = 'quiz-question-' + nextIndex
+      }
+    },
+    goToPreviousQuestion () {
+      let currentQuestionIndex
+
+      // Prevent navigation when current view is not question
+      if (this.currentView.indexOf('quiz-question') === -1) {
+        // Except on result page, user can go previous question
+        // to fix their answer
+        if (this.currentView === 'quiz-result') {
+          // move to last question
+          this.currentView = 'quiz-question-' + (this.questions.length - 1)
+        }
+        return
+      } else {
+        currentQuestionIndex = parseInt(this.currentView.split('-')[2])
+      }
+
+      console.log('currentQuestionIndex ' + currentQuestionIndex)
+
+      let prevIndex = currentQuestionIndex - 1
+      // prevent go to start page on first question
+      if (currentQuestionIndex === 0) {
+        console.log('this is first question!')
+      } else {
+        this.currentView = 'quiz-question-' + prevIndex
       }
     }
   }
