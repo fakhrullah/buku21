@@ -27,7 +27,26 @@
       :questions="userSubmited"
       ></quiz-review>
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
-    <button class="count" @click="getResult">Count</button>
+    <div class="quiz-navigation">
+      <button class="start" @click="startQuiz">
+        Mula
+      </button>
+      <button class="prev prev-page prev-question">
+        &lt;--
+      </button>
+      <button class="next next-page next-question">
+        --&gt;
+      </button>
+      <button class="count" @click="getResult">
+        Kira Markah
+      </button>
+      <button class="review">
+        Rumusan
+      </button>
+      <button class="menu">
+        Menu
+      </button>
+    </div>
   </div>
 </template>
 
@@ -170,6 +189,9 @@ export default {
       setTimeout(() => {
         this.result.countingProgress = progress
       }, delay)
+    },
+    startQuiz () {
+      console.log('start quiz')
     }
   }
 }
