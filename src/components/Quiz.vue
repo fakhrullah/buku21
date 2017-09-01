@@ -2,12 +2,15 @@
   <div class="quiz">
     <!-- front page - contain welcome word-->
     <quiz-welcome-page
-      v-if="isCurrentView('quiz-welcome-page')"
+      v-show="isCurrentView('quiz-welcome-page')"
       :quiz-name="quiz.name"
       :questions-sum="questionsSum"></quiz-welcome-page>
     <!-- questions - contain a lot of question -->
     <quiz-question
-      v-for="q in questions" 
+      v-show="isCurrentView('quiz-question-' + index)"
+      v-for="(q, index) in questions" 
+      :key="index"
+      :class="'quiz-question-' + index"
       :question="q.question"
       :answers="q.answers"></quiz-question>
       <!-- question 1 -->
@@ -17,6 +20,7 @@
       <!-- question 5 -->
     <!-- result page - show how much user got correct -->
     <quiz-result
+      v-show="isCurrentView('quiz-result')"
       :mark="result.mark"
       :counting-percent="result.countingProgress"
       ></quiz-result>
@@ -24,6 +28,7 @@
     and clickable to question page 
     and show user answer and correct answer -->
     <quiz-review
+      v-show="isCurrentView('quiz-review')"
       :questions="userSubmited"
       ></quiz-review>
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
@@ -192,6 +197,7 @@ export default {
     },
     startQuiz () {
       console.log('start quiz')
+      this.currentView = 'quiz-question-0'
     }
   }
 }
