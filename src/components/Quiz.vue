@@ -45,7 +45,7 @@
       <button class="count" @click="getResult">
         Kira Markah
       </button>
-      <button class="review">
+      <button class="review" @click="reviewQuiz">
         Rumusan
       </button>
       <button class="menu">
@@ -236,6 +236,9 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + prevIndex
       }
+    },
+    reviewQuiz () {
+      this.currentView = 'quiz-review'
     }
   }
 }
