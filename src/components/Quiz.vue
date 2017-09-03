@@ -39,17 +39,17 @@
         Mula
       </button>
       <button v-show="isNeededNavigations('quiz-goto-prev-button')"
-        class="prev prev-page prev-question"
+        class="prev-question"
         @click="goToPreviousQuestion">
         &lt;--
       </button>
       <button v-show="isNeededNavigations('quiz-goto-next-button')"
-        class="next next-page next-question"
+        class="next-question"
         @click="goToNextQuestion">
         --&gt;
       </button>
       <button v-show="isNeededNavigations('quiz-get-result-button')"
-        class="count"
+        class="check-answer"
         @click="getResult">
         Kira Markah
       </button>
@@ -290,6 +290,11 @@ function navigationsOnPage (quizPage) {
   }
   button.next-question {
     right: 0;
+  }
+
+  button.check-answer {
+    display: block;
+    margin: 0 auto;
   }
 }
 </style>
