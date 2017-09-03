@@ -34,7 +34,7 @@
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
-        class="start"
+        class="start-quiz"
         @click="startQuiz">
         Mula
       </button>
@@ -267,6 +267,15 @@ function navigationsOnPage (quizPage) {
 }
 </script>
 
-<style>
+<style lang="postcss">
+.quiz-navigation {
 
+  button.start-quiz {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
 </style>
