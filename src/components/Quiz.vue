@@ -277,5 +277,19 @@ function navigationsOnPage (quizPage) {
     width: 100%;
     text-transform: uppercase;
   }
+
+  button.next-question,
+  button.prev-question {
+    width: 50%;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+  }
+  button.prev-question {
+    left: 0;
+  }
+  button.next-question {
+    right: 0;
+  }
 }
 </style>
