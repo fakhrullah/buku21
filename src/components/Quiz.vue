@@ -150,6 +150,8 @@ export default {
 
       // Finish count
       this.updateProgressBar('done', 100, 100, 1000 + this.questions.length * 1000)
+
+      this.neededNavigationsButton = navigationsOnPage('quiz-result-answer-checked')
     },
     updateProgressBar (status, nth = 0, all = 100, delay = 1000) {
       let progress
@@ -243,6 +245,14 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       '',
       'quiz-get-result-button',
+      '',
+      ''
+    ],
+    'quiz-result-answer-checked': [
+      '',
+      '',
+      '',
+      '',
       'quiz-review-answers-button',
       ''
     ],
@@ -251,7 +261,7 @@ function navigationsOnPage (quizPage) {
       '',
       '',
       '',
-      'quiz-review-answers-button',
+      '',
       ''
     ],
     'quiz-all': [
