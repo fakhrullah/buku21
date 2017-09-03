@@ -16,6 +16,7 @@
     <div class="mark">
       {{ mark }}
     </div>
+    <slot></slot>    
   </div>
 </template>
 

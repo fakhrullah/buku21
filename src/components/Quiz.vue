@@ -34,22 +34,22 @@
     <!-- quiz navigation button. start, next, prev, count, review, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
-        class="start"
+        class="start-quiz"
         @click="startQuiz">
         Mula
       </button>
       <button v-show="isNeededNavigations('quiz-goto-prev-button')"
-        class="prev prev-page prev-question"
+        class="prev-question"
         @click="goToPreviousQuestion">
         &lt;--
       </button>
       <button v-show="isNeededNavigations('quiz-goto-next-button')"
-        class="next next-page next-question"
+        class="next-question"
         @click="goToNextQuestion">
         --&gt;
       </button>
       <button v-show="isNeededNavigations('quiz-get-result-button')"
-        class="count"
+        class="check-answer"
         @click="getResult">
         Kira Markah
       </button>
@@ -150,6 +150,8 @@ export default {
 
       // Finish count
       this.updateProgressBar('done', 100, 100, 1000 + this.questions.length * 1000)
+
+      this.neededNavigationsButton = navigationsOnPage('quiz-result-answer-checked')
     },
     updateProgressBar (status, nth = 0, all = 100, delay = 1000) {
       let progress
@@ -243,6 +245,14 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       '',
       'quiz-get-result-button',
+      '',
+      ''
+    ],
+    'quiz-result-answer-checked': [
+      '',
+      '',
+      '',
+      '',
       'quiz-review-answers-button',
       ''
     ],
@@ -251,7 +261,7 @@ function navigationsOnPage (quizPage) {
       '',
       '',
       '',
-      'quiz-review-answers-button',
+      '',
       ''
     ],
     'quiz-all': [
@@ -267,6 +277,34 @@ function navigationsOnPage (quizPage) {
 }
 </script>
 
-<style>
+<style lang="postcss">
+.quiz-navigation {
 
+  button.start-quiz {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-transform: uppercase;
+  }
+
+  button.next-question,
+  button.prev-question {
+    width: 50%;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+  }
+  button.prev-question {
+    left: 0;
+  }
+  button.next-question {
+    right: 0;
+  }
+
+  button.check-answer {
+    display: block;
+    margin: 0 auto;
+  }
+}
 </style>
