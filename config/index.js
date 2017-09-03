@@ -7,6 +7,13 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
+    // To generated file with correct for file:/// protocol
+    // which is important for cordova / android app.
+    // Use assets link (below) to local not root
+    // assetsPublicPath: './',
+    // Use root `/` when using web server `locahost:8080/`
+    // because using `./` here would not create correct url
+    // for assets file (css, js) in index.html on localhost
     assetsPublicPath: '/',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
