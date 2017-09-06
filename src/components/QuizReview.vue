@@ -46,44 +46,43 @@ export default {
 
   .question {
     display: flex;
-    border-top: solid 1px rgba(0,0,0,0.05);
-    padding: 8px 0;
+    border-top: solid 1px var(--gray-light-alpha);
+    padding: var(--ws-m) 0;
   }
 
   .question-body {
-    margin-bottom: 16px;
+    margin-bottom: var(--ws-l);
   }
 
   .wrong {
-    background-color: rgba(0,0,0,0.03);
+    background-color: var(--gray-lighter-alpha);
   }
 
   .question-id {
-    min-width: 24px;
-    margin: auto 8px;
+    margin: auto var(--ws-m);
     text-align: center;
   }
 
   .user-answer-status {
-    color: rgba(0,0,0,0.4);
+    color: var(--gray-alpha);
     font-style: oblique;
     font-size: 85%;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: var(--ws-m);
+    margin-bottom: var(--ws-m);
   }
 
   .question-answer {
-    margin: 4px 0;
+    margin: var(--ws-s) 0;
   }
 
   .wrong-answer::before {
     content: "✗";
-    margin-right: 8px;
+    margin-right: var(--ws-m);
   }
 
   .correct-answer::before {
     content: "✔";
-    margin-right: 8px;
+    margin-right: var(--ws-m);
   }
 }
 
