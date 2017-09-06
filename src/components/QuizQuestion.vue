@@ -1,9 +1,12 @@
 <template>
   <div class="quiz-page quiz-question">
     <!-- question -->
-    <p>{{ question }}</p>
+    <p class="question">
+      {{ question }}
+    </p>
     <!-- answers and answering tool according to question type -->
-    <div class="answering">
+    <div class="answering" 
+      :class="qtype">
       <!-- TODO new component -->
       <!-- for now just expect objective type -->
       <button 
@@ -22,7 +25,7 @@
 <script>
 export default {
   name: 'quiz-question',
-  props: ['question', 'answers'],
+  props: ['question', 'answers', 'qtype'],
   data () {
     return {
       choices: this.answers
@@ -39,8 +42,35 @@ export default {
 }
 </script>
 
-<style scoped>
-.choosed {
-  background-color: lightgreen;
+<style lang="postcss" scoped>
+.question {
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
+
+.objective {
+  .choice {
+    display: block;
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: rgba(0,0,0,0.03);
+
+    border-top: solid 1px rgba(0,0,0,0.05);
+    border-bottom: solid 1px rgba(0,0,0,0.05);
+    border-left: none;
+    border-right: none;
+  }
+
+  .choosed {
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+  }
+}
+
 </style>
