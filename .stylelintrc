@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "max-nesting-depth": 3
+  },
+  "processors": ["stylelint-processor-html"]
+}

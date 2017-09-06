@@ -280,11 +280,10 @@ function navigationsOnPage (quizPage) {
 
 <style lang="postcss">
 .quiz-navigation {
-
   button.start-quiz {
     position: fixed;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     text-transform: uppercase;
   }
@@ -296,9 +295,11 @@ function navigationsOnPage (quizPage) {
     position: fixed;
     bottom: 0;
   }
+
   button.prev-question {
     left: 0;
   }
+
   button.next-question {
     right: 0;
   }

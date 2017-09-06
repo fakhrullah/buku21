@@ -52,12 +52,10 @@ export default {
   .choice {
     display: block;
     width: 100%;
-    padding-top: var(--ws-l);
-    padding-bottom: var(--ws-l);
-    padding-left: 0;
-    padding-right: 0;
+    padding: var(--ws-l) 0;
     background-color: var(--gray-lighter-alpha);
 
+    /* Border */
     border-top: solid 1px var(--gray-light-alpha);
     border-bottom: solid 1px var(--gray-light-alpha);
     border-left: none;
