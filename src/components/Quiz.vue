@@ -12,6 +12,7 @@
       :key="index"
       :class="'quiz-question-' + index"
       :question="q.question"
+      :qtype="q.type"
       :answers="q.answers"></quiz-question>
       <!-- question 1 -->
       <!-- question 2 -->
