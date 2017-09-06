@@ -45,30 +45,27 @@ export default {
 <style lang="postcss" scoped>
 .question {
   text-align: left;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-top: var(--ws-m);
 }
 
 .objective {
   .choice {
     display: block;
     width: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: var(--ws-l);
+    padding-bottom: var(--ws-l);
     padding-left: 0;
     padding-right: 0;
-    background-color: rgba(0,0,0,0.03);
+    background-color: var(--gray-lighter-alpha);
 
-    border-top: solid 1px rgba(0,0,0,0.05);
-    border-bottom: solid 1px rgba(0,0,0,0.05);
+    border-top: solid 1px var(--gray-light-alpha);
+    border-bottom: solid 1px var(--gray-light-alpha);
     border-left: none;
     border-right: none;
   }
 
   .choosed {
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--gray-alpha);
     color: white;
   }
 }

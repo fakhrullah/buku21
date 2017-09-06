@@ -1,0 +1,36 @@
+:root {
+  /**
+   * =============================== COLORS =================================
+   */
+  
+  /**
+   * Gray
+   * 
+   * When start creating any website, use gray for look instead of color.
+   * This is how artist, designer doing in initial work of arts.
+   */
+  --black: #000;
+  --gray-dark: #222;
+  --gray: #333;
+  --gray-light: #d3d3d3;
+  --gray-lighter: #ccc;
+
+
+  --gray-dark-alpha: rgba(0,0,0,0.8);
+  --gray-alpha: rgba(0,0,0,0.4);
+  --gray-light-alpha: rgba(0,0,0,0.05);
+  --gray-lighter-alpha: rgba(0,0,0,0.03);
+
+  /**
+   * ============================= MARGIN & PADDING =========================
+   */
+
+  /**
+   * White spaces
+   */
+  --ws-xs: 2px;
+  --ws-s: 4px;
+  --ws-m: 8px;
+  --ws-l: 16px;
+  --ws-xl: 32px;
+}
