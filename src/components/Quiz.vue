@@ -24,15 +24,15 @@
       v-show="isCurrentView('quiz-result')"
       :mark="result.mark"
       :counting-percent="result.countingProgress"
-      ></quiz-result>
-    <!-- review page - show list of question with status correct or wrong, 
-    and clickable to question page 
-    and show user answer and correct answer -->
-    <quiz-review
-      v-show="isCurrentView('quiz-review')"
-      :questions="userSubmited"
-      ></quiz-review>
-    <!-- quiz navigation button. start, next, prev, count, review, menu -->
+      >
+      <!-- review page - show list of question with status correct or wrong, 
+      and clickable to question page 
+      and show user answer and correct answer -->
+      <quiz-review
+        :questions="userSubmited"
+        ></quiz-review>
+    </quiz-result>
+    <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
         class="start-quiz"
@@ -53,11 +53,6 @@
         class="check-answer"
         @click="getResult">
         Kira Markah
-      </button>
-      <button v-show="isNeededNavigations('quiz-review-answers-button')"
-        class="review"
-        @click="reviewQuiz">
-        Rumusan
       </button>
       <button v-show="isNeededNavigations('quiz-menu-button')"
         class="menu">
@@ -91,11 +86,11 @@ export default {
         '',
         '',
         '',
-        '',
         ''
       ],
       questions: questions,
       result: {
+        isCalculated: false,
         mark: 0,
         countingProgress: 0
       }
@@ -207,10 +202,6 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + prevIndex
       }
-    },
-    reviewQuiz () {
-      this.currentView = 'quiz-review'
-      this.neededNavigationsButton = navigationsOnPage('quiz-review')
     }
   }
 }
@@ -223,11 +214,11 @@ function countProgress (nth = 0, all = 100) {
   let progress = (maxProgress - minProgress) * (nth / all) + minProgress
   return progress
 }
+
 function navigationsOnPage (quizPage) {
   let navsButton = {
     'quiz-start': [
       'quiz-start-button',
-      '',
       '',
       '',
       '',
@@ -238,7 +229,6 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       'quiz-goto-next-button',
       '',
-      '',
       ''
     ],
     'quiz-result': [
@@ -246,19 +236,9 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       '',
       'quiz-get-result-button',
-      '',
       ''
     ],
     'quiz-result-answer-checked': [
-      '',
-      '',
-      '',
-      '',
-      'quiz-review-answers-button',
-      ''
-    ],
-    'quiz-review': [
-      '',
       '',
       '',
       '',
@@ -270,7 +250,6 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       'quiz-goto-next-button',
       'quiz-get-result-button',
-      'quiz-review-answers-button',
       'quiz-menu-button'
     ]
   }
