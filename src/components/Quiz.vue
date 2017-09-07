@@ -29,6 +29,7 @@
       and clickable to question page 
       and show user answer and correct answer -->
       <quiz-review
+        v-if="result.isCalculated"
         :questions="userSubmited"
         ></quiz-review>
     </quiz-result>
@@ -148,6 +149,9 @@ export default {
       this.updateProgressBar('done', 100, 100, 1000 + this.questions.length * 1000)
 
       this.neededNavigationsButton = navigationsOnPage('quiz-result-answer-checked')
+
+      // Show review
+      this.result.isCalculated = true
     },
     updateProgressBar (status, nth = 0, all = 100, delay = 1000) {
       let progress
