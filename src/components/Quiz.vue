@@ -22,17 +22,21 @@
     <!-- result page - show how much user got correct -->
     <quiz-result
       v-show="isCurrentView('quiz-result')"
-      :mark="result.mark"
+      :correct="result.correct"
+      :wrong="result.wrong"
+      :unanswered="result.unanswered"
+      :questions-sum="questionsSum"
       :counting-percent="result.countingProgress"
-      ></quiz-result>
-    <!-- review page - show list of question with status correct or wrong, 
-    and clickable to question page 
-    and show user answer and correct answer -->
-    <quiz-review
-      v-show="isCurrentView('quiz-review')"
-      :questions="userSubmited"
-      ></quiz-review>
-    <!-- quiz navigation button. start, next, prev, count, review, menu -->
+      >
+      <!-- review page - show list of question with status correct or wrong, 
+      and clickable to question page 
+      and show user answer and correct answer -->
+      <quiz-review
+        v-if="result.isCalculated"
+        :questions="userSubmited"
+        ></quiz-review>
+    </quiz-result>
+    <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
         class="start-quiz"
@@ -53,11 +57,6 @@
         class="check-answer"
         @click="getResult">
         Kira Markah
-      </button>
-      <button v-show="isNeededNavigations('quiz-review-answers-button')"
-        class="review"
-        @click="reviewQuiz">
-        Rumusan
       </button>
       <button v-show="isNeededNavigations('quiz-menu-button')"
         class="menu">
@@ -91,12 +90,14 @@ export default {
         '',
         '',
         '',
-        '',
         ''
       ],
       questions: questions,
       result: {
-        mark: 0,
+        isCalculated: false,
+        correct: 0,
+        wrong: 0,
+        unanswered: 0,
         countingProgress: 0
       }
     }
@@ -135,24 +136,41 @@ export default {
     getResult () {
       console.log('miaw')
       // Start counting
-      this.updateProgressBar('start', 0, this.questions.length, 1000)
+      this.updateProgressBar('start', 0, this.questions.length, 0)
 
       // Get result for objective question
       this.questions.forEach((q, index) => {
         // counting mark on n-th question
         this.updateProgressBar('counting', index + 1, this.questions.length, 1000 + (index + 1) * 1000)
 
+        // user answered
+        let isAnswered = false
+        // user answered correct
+        // user answered wrong
+        let isCorrect = false
+
         q.answers.forEach(a => {
           if (a.isChoosed) {
-            if (a.isCorrect) this.result.mark++
+            isAnswered = true
+            if (a.isCorrect) isCorrect = true
           }
         })
+
+        if (isAnswered) {
+          if (isCorrect) this.result.correct++
+          else this.result.wrong++
+        } else {
+          this.result.unanswered++
+        }
       })
 
       // Finish count
       this.updateProgressBar('done', 100, 100, 1000 + this.questions.length * 1000)
 
       this.neededNavigationsButton = navigationsOnPage('quiz-result-answer-checked')
+
+      // Show review
+      this.result.isCalculated = true
     },
     updateProgressBar (status, nth = 0, all = 100, delay = 1000) {
       let progress
@@ -207,10 +225,6 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + prevIndex
       }
-    },
-    reviewQuiz () {
-      this.currentView = 'quiz-review'
-      this.neededNavigationsButton = navigationsOnPage('quiz-review')
     }
   }
 }
@@ -223,11 +237,11 @@ function countProgress (nth = 0, all = 100) {
   let progress = (maxProgress - minProgress) * (nth / all) + minProgress
   return progress
 }
+
 function navigationsOnPage (quizPage) {
   let navsButton = {
     'quiz-start': [
       'quiz-start-button',
-      '',
       '',
       '',
       '',
@@ -238,7 +252,6 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       'quiz-goto-next-button',
       '',
-      '',
       ''
     ],
     'quiz-result': [
@@ -246,19 +259,9 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       '',
       'quiz-get-result-button',
-      '',
       ''
     ],
     'quiz-result-answer-checked': [
-      '',
-      '',
-      '',
-      '',
-      'quiz-review-answers-button',
-      ''
-    ],
-    'quiz-review': [
-      '',
       '',
       '',
       '',
@@ -270,7 +273,6 @@ function navigationsOnPage (quizPage) {
       'quiz-goto-prev-button',
       'quiz-goto-next-button',
       'quiz-get-result-button',
-      'quiz-review-answers-button',
       'quiz-menu-button'
     ]
   }
