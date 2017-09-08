@@ -22,7 +22,10 @@
     <!-- result page - show how much user got correct -->
     <quiz-result
       v-show="isCurrentView('quiz-result')"
-      :mark="result.mark"
+      :correct="result.correct"
+      :wrong="result.wrong"
+      :unanswered="result.unanswered"
+      :questions-sum="questionsSum"
       :counting-percent="result.countingProgress"
       >
       <!-- review page - show list of question with status correct or wrong, 
@@ -92,7 +95,9 @@ export default {
       questions: questions,
       result: {
         isCalculated: false,
-        mark: 0,
+        correct: 0,
+        wrong: 0,
+        unanswered: 0,
         countingProgress: 0
       }
     }
@@ -138,11 +143,25 @@ export default {
         // counting mark on n-th question
         this.updateProgressBar('counting', index + 1, this.questions.length, 1000 + (index + 1) * 1000)
 
+        // user answered
+        let isAnswered = false
+        // user answered correct
+        // user answered wrong
+        let isCorrect = false
+
         q.answers.forEach(a => {
           if (a.isChoosed) {
-            if (a.isCorrect) this.result.mark++
+            isAnswered = true
+            if (a.isCorrect) isCorrect = true
           }
         })
+
+        if (isAnswered) {
+          if (isCorrect) this.result.correct++
+          else this.result.wrong++
+        } else {
+          this.result.unanswered++
+        }
       })
 
       // Finish count

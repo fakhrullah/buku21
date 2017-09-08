@@ -8,25 +8,61 @@
         - Those will make user feel good for doing hard work
         - Never show result instantly
     -->
-    <div class="loading counting">
+    <div v-show="countingPercent < 100" class="loading counting">
       <progress :value="countingPercent" max="100"></progress>
     </div>
 
     <!-- show marks -->
-    <div class="mark">
-      {{ mark }}
+    <div v-show="countingPercent >= 100" class="mark-in-percentage">
+      {{ markInPercentage }}
     </div>
-    <slot></slot>    
+
+    <div v-show="countingPercent >= 100" class="mark-in-detail">
+      <div class="correct-answers">
+        <div>BETUL</div>
+        <div>{{ correct }}</div>
+      </div>
+      <div class="wrong-answers">
+        <div>SALAH</div>
+        <div>{{ wrong }}</div>
+      </div>
+      <div v-if="unanswered" class="unanswered">
+        <div>TAK JAWAB</div>
+        <div>{{ unanswered }}</div>
+      </div>
+    </div>
+
+    <slot v-if="countingPercent >= 100"></slot>
+
   </div>
 </template>
 
 <script>
 export default {
   name: 'quiz-result',
-  props: ['countingPercent', 'mark']
+  props: ['countingPercent', 'correct', 'wrong', 'unanswered', 'questionsSum'],
+  computed: {
+    markInPercentage () {
+      let value = (this.correct / this.questionsSum) * 100
+      return `${value} %`
+    }
+  }
 }
 </script>
 
 <style>
+.mark-in-percentage {
+  font-size: 300%;
+  margin-top: var(--ws-xl);
+  margin-bottom: var(--ws-xl);
+}
 
+.mark-in-detail {
+  display: flex;
+  margin-bottom: var(--ws-xl);
+
+  div {
+    flex-grow: 1;
+  }
+}
 </style>
