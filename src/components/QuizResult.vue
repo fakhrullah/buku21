@@ -8,7 +8,7 @@
         - Those will make user feel good for doing hard work
         - Never show result instantly
     -->
-    <div v-show="countingPercent < 100" class="loading counting">
+    <div v-show="countingPercent < 100" class="loading counting progressbar">
       <progress :value="countingPercent" max="100"></progress>
     </div>
 
@@ -50,7 +50,52 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
+.counting.progressbar {
+  margin: var(--ws-xl) var(--ws-l);
+
+  progress {
+    appearance: none;
+    width: 100%;
+    border: none;
+    height: var(--ws-l);
+  }
+
+  progress[value]::-webkit-progress-value {
+    background-image:
+      -webkit-linear-gradient(
+        -45deg,
+        transparent 33%,
+        var(--gray-light-alpha) 33%,
+        var(--gray-light-alpha) 66%,
+        transparent 66%
+      ),
+      -webkit-linear-gradient(
+        left,
+        var(--black),
+        var(--gray-light) 200%
+      );
+    background-size: 36px 20px, 100% 100%;
+  }
+
+  progress[value]::-moz-progress-bar {
+    background-image:
+      -moz-linear-gradient(
+        -45deg,
+        transparent 33%,
+        var(--gray-light-alpha) 33%,
+        var(--gray-light-alpha) 66%,
+        transparent 66%
+      ),
+      -moz-linear-gradient(
+        left,
+        var(--black),
+        var(--gray-light) 200%
+      );
+    background-size: 36px 20px, 100% 100%;
+  }
+}
+
 .mark-in-percentage {
   font-size: 300%;
   margin-top: var(--ws-xl);

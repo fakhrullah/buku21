@@ -136,7 +136,7 @@ export default {
     getResult () {
       console.log('miaw')
       // Start counting
-      this.updateProgressBar('start', 0, this.questions.length, 1000)
+      this.updateProgressBar('start', 0, this.questions.length, 0)
 
       // Get result for objective question
       this.questions.forEach((q, index) => {
