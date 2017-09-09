@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Main from '@/components/Main'
 import Quiz from '@/components/Quiz'
 import Note from '@/components/Note'
 
@@ -9,13 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Quiz',
-      component: Quiz
+      name: 'main',
+      component: Main
     },
     {
-      path: '/nota',
-      name: 'Note',
+      path: '/note',
+      name: 'note',
       component: Note
+    },
+    {
+      path: '/quiz',
+      name: 'quiz',
+      component: Quiz
     }
   ]
 })
