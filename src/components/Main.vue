@@ -17,12 +17,16 @@ export default {
         {
           id: 1,
           name: 'Nota',
-          route: '/nota'
+          route: {
+            name: 'note'
+          }
         },
         {
           id: 2,
           name: 'Quiz',
-          route: '/'
+          route: {
+            name: 'quiz'
+          }
         }
       ]
     }

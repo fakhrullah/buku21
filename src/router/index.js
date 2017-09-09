@@ -10,18 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Quiz',
-      component: Quiz
+      name: 'main',
+      component: Main
     },
     {
-      path: '/nota',
-      name: 'Note',
+      path: '/note',
+      name: 'note',
       component: Note
     },
     {
-      path: '/main',
-      name: 'Main',
-      component: Main
+      path: '/quiz',
+      name: 'quiz',
+      component: Quiz
     }
   ]
 })
