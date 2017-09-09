@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Main from '@/components/Main'
 import Quiz from '@/components/Quiz'
 import Note from '@/components/Note'
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/nota',
       name: 'Note',
       component: Note
+    },
+    {
+      path: '/main',
+      name: 'Main',
+      component: Main
     }
   ]
 })
