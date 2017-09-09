@@ -28,7 +28,10 @@ export default {
           id: 2,
           name: 'Quiz',
           route: {
-            name: 'quiz'
+            name: 'quiz',
+            params: {
+              data: 'quiz-template'
+            }
           }
         },
         {
@@ -38,6 +41,16 @@ export default {
             name: 'note',
             params: {
               data: 'note-story-of-neko'
+            }
+          }
+        },
+        {
+          id: 4,
+          name: 'Kuiz pasal neko',
+          route: {
+            name: 'quiz',
+            params: {
+              data: 'quiz-story-of-neko'
             }
           }
         }

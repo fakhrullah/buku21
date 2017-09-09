@@ -19,7 +19,7 @@ export default new Router({
       component: Note
     },
     {
-      path: '/quiz',
+      path: '/quiz/:data',
       name: 'quiz',
       component: Quiz
     }

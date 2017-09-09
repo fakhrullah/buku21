@@ -72,8 +72,6 @@ import QuizQuestion from '@/components/QuizQuestion'
 import QuizResult from '@/components/QuizResult'
 import QuizReview from '@/components/QuizReview'
 
-import questions from '../data/questions.json'
-
 export default {
   name: 'quiz',
   components: {
@@ -92,7 +90,7 @@ export default {
         '',
         ''
       ],
-      questions: questions,
+      questions: [],
       result: {
         isCalculated: false,
         correct: 0,
@@ -225,7 +223,19 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + prevIndex
       }
+    },
+    getQuestions () {
+      let filename = this.$route.params.data
+      fetch('static/' + filename + '.json')
+        .then(response => response.json())
+        .then(data => {
+          this.questions = data
+        })
+        .catch(err => console.log(err))
     }
+  },
+  mounted () {
+    this.getQuestions()
   }
 }
 
