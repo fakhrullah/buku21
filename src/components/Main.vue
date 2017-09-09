@@ -28,7 +28,10 @@ export default {
           id: 2,
           name: 'Quiz',
           route: {
-            name: 'quiz'
+            name: 'quiz',
+            params: {
+              data: 'quiz-template'
+            }
           }
         },
         {

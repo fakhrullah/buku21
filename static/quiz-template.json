@@ -1,0 +1,49 @@
+[
+    {
+        "type": "objective",
+        "question": "Short one line question",
+        "answers": [
+            {
+                "answer": "Wrong answer",
+                "isCorrect": false,
+                "isChoosed": false
+            },
+            {
+                "answer": "Wrong answer",
+                "isCorrect": false,
+                "isChoosed": false
+            },
+            {
+                "answer": "Correct answer",
+                "isCorrect": true,
+                "isChoosed": false
+            },
+            {
+                "answer": "Wrong answer",
+                "isCorrect": false,
+                "isChoosed": false
+            }
+        ]
+    },
+    {
+        "type": "objective",
+        "question": "Short multiple line question.\n\nSecond line.",
+        "answers": [
+            {
+                "answer": "Wrong answer",
+                "isCorrect": false,
+                "isChoosed": false
+            },
+            {
+                "answer": "Correct answer",
+                "isCorrect": true,
+                "isChoosed": false
+            },
+            {
+                "answer": "Wrong answer",
+                "isCorrect": false,
+                "isChoosed": false
+            }
+        ]
+    }
+]
