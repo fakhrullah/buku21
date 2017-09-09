@@ -12,7 +12,7 @@ export default {
     return {
       note: {
         title: 'Loading data ...',
-        content: 'Loading content ...'
+        content: '<p>Loading content ...<p>'
       }
     }
   },
@@ -35,7 +35,7 @@ export default {
           console.log(err)
           this.note = {
             title: 'Error: No file',
-            content: 'Error: No content'
+            content: '<p>Error: No content</p>'
           }
         })
     }
