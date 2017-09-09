@@ -16,9 +16,12 @@ export default {
       chapters: [
         {
           id: 1,
-          name: 'Nota',
+          name: 'Nota utama',
           route: {
-            name: 'note'
+            name: 'note',
+            params: {
+              data: 'note-content'
+            }
           }
         },
         {
@@ -26,6 +29,16 @@ export default {
           name: 'Quiz',
           route: {
             name: 'quiz'
+          }
+        },
+        {
+          id: 3,
+          name: 'Cerita pasal neko',
+          route: {
+            name: 'note',
+            params: {
+              data: 'note-story-of-neko'
+            }
           }
         }
       ]

@@ -14,7 +14,7 @@ export default new Router({
       component: Main
     },
     {
-      path: '/note',
+      path: '/note/:data',
       name: 'note',
       component: Note
     },
