@@ -12,8 +12,6 @@ describe('quiz-helper.js', () => {
   })
 
   describe('#navigationsOnPage', () => {
-    it('should contain 5 items as 5 navigation buttons', () => expect(quizHelper.navigationsOnPage('quiz-start')).to.have.length(5))
-
     it('should contain start quiz button', () => expect(quizHelper.navigationsOnPage('quiz-start')).to.contain('quiz-start-button'))
 
     it('should not contain goto previous/next button on quiz start', () => expect(quizHelper.navigationsOnPage('quiz-start'))

@@ -85,13 +85,7 @@ export default {
         name: 'Kuiz Sejarah'
       },
       currentView: 'quiz-welcome-page',
-      neededNavigationsButton: [
-        'quiz-start-button',
-        '',
-        '',
-        '',
-        ''
-      ],
+      neededNavigationsButton: ['quiz-start-button'],
       questions: [],
       result: {
         isCalculated: false,

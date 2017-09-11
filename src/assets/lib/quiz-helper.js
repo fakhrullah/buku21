@@ -32,33 +32,17 @@ const getNPerAllDependsOnMinMax = (n, all, min, max) => (max - min) * (n / all) 
 const navigationsOnPage = (quizPage) => {
   let navsButton = {
     'quiz-start': [
-      'quiz-start-button',
-      '',
-      '',
-      '',
-      ''
+      'quiz-start-button'
     ],
     'quiz-question': [
-      '',
       'quiz-goto-prev-button',
-      'quiz-goto-next-button',
-      '',
-      ''
+      'quiz-goto-next-button'
     ],
     'quiz-result': [
-      '',
       'quiz-goto-prev-button',
-      '',
-      'quiz-get-result-button',
-      ''
+      'quiz-get-result-button'
     ],
-    'quiz-result-answer-checked': [
-      '',
-      '',
-      '',
-      '',
-      ''
-    ],
+    'quiz-result-answer-checked': [],
     'quiz-all': [
       'quiz-start-button',
       'quiz-goto-prev-button',
