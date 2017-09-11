@@ -5,6 +5,7 @@
       v-show="isCurrentView('quiz-welcome-page')"
       :quiz-name="quiz.name"
       :questions-sum="questionsSum"></quiz-welcome-page>
+
     <!-- questions - contain a lot of question -->
     <quiz-question
       v-show="isCurrentView('quiz-question-' + index)"
@@ -14,11 +15,7 @@
       :question="q.question"
       :qtype="q.type"
       :answers="q.answers"></quiz-question>
-      <!-- question 1 -->
-      <!-- question 2 -->
-      <!-- question 3 -->
-      <!-- question 4 -->
-      <!-- question 5 -->
+
     <!-- result page - show how much user got correct -->
     <quiz-result
       v-show="isCurrentView('quiz-result')"
@@ -28,14 +25,18 @@
       :questions-sum="questionsSum"
       :counting-percent="result.countingProgress"
       >
-      <!-- review page - show list of question with status correct or wrong, 
-      and clickable to question page 
-      and show user answer and correct answer -->
+
+      <!-- review page
+        - show list of question with status correct or wrong, 
+        and clickable to question page 
+        and show user answer and correct answer
+      -->
       <quiz-review
         v-if="result.isCalculated"
         :questions="userSubmited"
         ></quiz-review>
     </quiz-result>
+
     <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
@@ -72,6 +73,8 @@ import QuizQuestion from '@/components/QuizQuestion'
 import QuizResult from '@/components/QuizResult'
 import QuizReview from '@/components/QuizReview'
 
+import { countProgress, navigationsOnPage } from './../assets/lib/quiz-helper'
+
 export default {
   name: 'quiz',
   components: {
@@ -83,13 +86,7 @@ export default {
         name: 'Kuiz Sejarah'
       },
       currentView: 'quiz-welcome-page',
-      neededNavigationsButton: [
-        'quiz-start-button',
-        '',
-        '',
-        '',
-        ''
-      ],
+      neededNavigationsButton: ['quiz-start-button'],
       questions: [],
       result: {
         isCalculated: false,
@@ -132,7 +129,7 @@ export default {
       return this.neededNavigationsButton.includes(navigationButton)
     },
     getResult () {
-      console.log('miaw')
+      console.log('Get result')
       // Start counting
       this.updateProgressBar('start', 0, this.questions.length, 0)
 
@@ -237,56 +234,6 @@ export default {
   created () {
     this.getQuestions()
   }
-}
-
-function countProgress (nth = 0, all = 100) {
-  // Only set progress bar from 10 to 50
-  // because another 50 to 100 is for virtual progress
-  let minProgress = 10
-  let maxProgress = 50
-  let progress = (maxProgress - minProgress) * (nth / all) + minProgress
-  return progress
-}
-
-function navigationsOnPage (quizPage) {
-  let navsButton = {
-    'quiz-start': [
-      'quiz-start-button',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'quiz-question': [
-      '',
-      'quiz-goto-prev-button',
-      'quiz-goto-next-button',
-      '',
-      ''
-    ],
-    'quiz-result': [
-      '',
-      'quiz-goto-prev-button',
-      '',
-      'quiz-get-result-button',
-      ''
-    ],
-    'quiz-result-answer-checked': [
-      '',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'quiz-all': [
-      'quiz-start-button',
-      'quiz-goto-prev-button',
-      'quiz-goto-next-button',
-      'quiz-get-result-button',
-      'quiz-menu-button'
-    ]
-  }
-  return navsButton[quizPage]
 }
 </script>
 
