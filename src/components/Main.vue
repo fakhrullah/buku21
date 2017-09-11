@@ -9,53 +9,12 @@
 </template>
 
 <script>
+import * as enota from './../data/enota.json'
+
 export default {
   name: 'main',
   data () {
-    return {
-      chapters: [
-        {
-          id: 1,
-          name: 'Nota utama',
-          route: {
-            name: 'note',
-            params: {
-              data: 'note-content'
-            }
-          }
-        },
-        {
-          id: 2,
-          name: 'Quiz',
-          route: {
-            name: 'quiz',
-            params: {
-              data: 'quiz-template'
-            }
-          }
-        },
-        {
-          id: 3,
-          name: 'Cerita pasal neko',
-          route: {
-            name: 'note',
-            params: {
-              data: 'note-story-of-neko'
-            }
-          }
-        },
-        {
-          id: 4,
-          name: 'Kuiz pasal neko',
-          route: {
-            name: 'quiz',
-            params: {
-              data: 'quiz-story-of-neko'
-            }
-          }
-        }
-      ]
-    }
+    return enota
   }
 }
 </script>
