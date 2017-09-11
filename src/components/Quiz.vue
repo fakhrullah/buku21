@@ -3,7 +3,7 @@
     <!-- front page - contain welcome word-->
     <quiz-welcome-page
       v-show="isCurrentView('quiz-welcome-page')"
-      :quiz-name="quiz.name"
+      :quiz-name="quizName"
       :questions-sum="questionsSum"></quiz-welcome-page>
 
     <!-- questions - contain a lot of question -->
@@ -82,9 +82,7 @@ export default {
   },
   data () {
     return {
-      quiz: {
-        name: 'Kuiz Sejarah'
-      },
+      quizName: '',
       currentView: 'quiz-welcome-page',
       neededNavigationsButton: ['quiz-start-button'],
       questions: [],
@@ -221,18 +219,22 @@ export default {
         this.currentView = 'quiz-question-' + prevIndex
       }
     },
-    getQuestions () {
+    getQuizData () {
       let filename = this.$route.params.data
       fetch('static/' + filename + '.json')
         .then(response => response.json())
         .then(data => {
-          this.questions = data
+          this.quizName = data.name
+          this.questions = data.questions
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          this.quizName = 'Error: No quiz name found'
+          console.log(err)
+        })
     }
   },
   created () {
-    this.getQuestions()
+    this.getQuizData()
   }
 }
 </script>

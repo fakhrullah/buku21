@@ -1,80 +1,83 @@
-[
-    {
-        "type": "objective",
-        "question": "What is color of my cat",
-        "answers": [
-            {
-                "answer": "Black",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "Orange stripes",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "White",
-                "isCorrect": true,
-                "isChoosed": false
-            },
-            {
-                "answer": "Green",
-                "isCorrect": false,
-                "isChoosed": false
-            }
-        ]
-    },
-    {
-        "type": "objective",
-        "question": "What is my cat name?",
-        "answers": [
-            {
-                "answer": "Kucing",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "Neko",
-                "isCorrect": true,
-                "isChoosed": false
-            },
-            {
-                "answer": "Putih",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "Si Belang",
-                "isCorrect": false,
-                "isChoosed": false
-            }
-        ]
-    },
-    {
-        "type": "objective",
-        "question": "What is neko means?",
-        "answers": [
-            {
-                "answer": "Red",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "Comel",
-                "isCorrect": false,
-                "isChoosed": false
-            },
-            {
-                "answer": "Kucing",
-                "isCorrect": true,
-                "isChoosed": false
-            },
-            {
-                "answer": "Putih",
-                "isCorrect": false,
-                "isChoosed": false
-            }
-        ]
-    }
-]
+{
+    "name": "Kuiz cerita tentang Neko",
+    "questions": [
+        {
+            "type": "objective",
+            "question": "What is color of my cat",
+            "answers": [
+                {
+                    "answer": "Black",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Orange stripes",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "White",
+                    "isCorrect": true,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Green",
+                    "isCorrect": false,
+                    "isChoosed": false
+                }
+            ]
+        },
+        {
+            "type": "objective",
+            "question": "What is my cat name?",
+            "answers": [
+                {
+                    "answer": "Kucing",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Neko",
+                    "isCorrect": true,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Putih",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Si Belang",
+                    "isCorrect": false,
+                    "isChoosed": false
+                }
+            ]
+        },
+        {
+            "type": "objective",
+            "question": "What is neko means?",
+            "answers": [
+                {
+                    "answer": "Red",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Comel",
+                    "isCorrect": false,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Kucing",
+                    "isCorrect": true,
+                    "isChoosed": false
+                },
+                {
+                    "answer": "Putih",
+                    "isCorrect": false,
+                    "isChoosed": false
+                }
+            ]
+        }
+    ]
+}
