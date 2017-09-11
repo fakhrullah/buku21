@@ -72,6 +72,8 @@ import QuizQuestion from '@/components/QuizQuestion'
 import QuizResult from '@/components/QuizResult'
 import QuizReview from '@/components/QuizReview'
 
+import { countProgress, navigationsOnPage } from './../assets/lib/quiz-helper'
+
 export default {
   name: 'quiz',
   components: {
@@ -237,56 +239,6 @@ export default {
   created () {
     this.getQuestions()
   }
-}
-
-function countProgress (nth = 0, all = 100) {
-  // Only set progress bar from 10 to 50
-  // because another 50 to 100 is for virtual progress
-  let minProgress = 10
-  let maxProgress = 50
-  let progress = (maxProgress - minProgress) * (nth / all) + minProgress
-  return progress
-}
-
-function navigationsOnPage (quizPage) {
-  let navsButton = {
-    'quiz-start': [
-      'quiz-start-button',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'quiz-question': [
-      '',
-      'quiz-goto-prev-button',
-      'quiz-goto-next-button',
-      '',
-      ''
-    ],
-    'quiz-result': [
-      '',
-      'quiz-goto-prev-button',
-      '',
-      'quiz-get-result-button',
-      ''
-    ],
-    'quiz-result-answer-checked': [
-      '',
-      '',
-      '',
-      '',
-      ''
-    ],
-    'quiz-all': [
-      'quiz-start-button',
-      'quiz-goto-prev-button',
-      'quiz-goto-next-button',
-      'quiz-get-result-button',
-      'quiz-menu-button'
-    ]
-  }
-  return navsButton[quizPage]
 }
 </script>
 
