@@ -5,6 +5,7 @@
       v-show="isCurrentView('quiz-welcome-page')"
       :quiz-name="quiz.name"
       :questions-sum="questionsSum"></quiz-welcome-page>
+
     <!-- questions - contain a lot of question -->
     <quiz-question
       v-show="isCurrentView('quiz-question-' + index)"
@@ -14,11 +15,7 @@
       :question="q.question"
       :qtype="q.type"
       :answers="q.answers"></quiz-question>
-      <!-- question 1 -->
-      <!-- question 2 -->
-      <!-- question 3 -->
-      <!-- question 4 -->
-      <!-- question 5 -->
+
     <!-- result page - show how much user got correct -->
     <quiz-result
       v-show="isCurrentView('quiz-result')"
@@ -28,14 +25,18 @@
       :questions-sum="questionsSum"
       :counting-percent="result.countingProgress"
       >
-      <!-- review page - show list of question with status correct or wrong, 
-      and clickable to question page 
-      and show user answer and correct answer -->
+
+      <!-- review page
+        - show list of question with status correct or wrong, 
+        and clickable to question page 
+        and show user answer and correct answer
+      -->
       <quiz-review
         v-if="result.isCalculated"
         :questions="userSubmited"
         ></quiz-review>
     </quiz-result>
+
     <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
       <button v-show="isNeededNavigations('quiz-start-button')"
@@ -128,7 +129,7 @@ export default {
       return this.neededNavigationsButton.includes(navigationButton)
     },
     getResult () {
-      console.log('miaw')
+      console.log('Get result')
       // Start counting
       this.updateProgressBar('start', 0, this.questions.length, 0)
 
