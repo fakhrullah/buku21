@@ -36,4 +36,10 @@ describe('quiz-helper.js', () => {
 
     it('should return 30 when 3/10 on 0~100 as in percent %', () => expect(quizHelper.getNPerAllDependsOnMinMax(3, 10, 0, 100)).to.equal(30))
   })
+
+  describe('#getPercentage', () => {
+    it('should return 33 when 1/3', () => expect(quizHelper.getPercentage(1, 3)).to.equal(33))
+
+    it('should return 67 when 2/3', () => expect(quizHelper.getPercentage(2, 3)).to.equal(67))
+  })
 })

@@ -25,6 +25,15 @@ const countProgress = (nth = 0, all = 100) => getNPerAllDependsOnMinMax(nth, all
 const getNPerAllDependsOnMinMax = (n, all, min, max) => (max - min) * (n / all) + min
 
 /**
+ * Get correct/allQuestions in percentage.
+ * Round to nearest decimal for float answers
+ *
+ * @param {Number} n Sum of correct answers
+ * @param {Number} all Sum of all questions
+ */
+const getPercentage = (n, all) => Math.round(n / all * 100)
+
+/**
  * Get array of navigation button I want to show
  *
  * @param {String} quizPage Current view page name
@@ -57,5 +66,6 @@ const navigationsOnPage = (quizPage) => {
 export {
   countProgress,
   getNPerAllDependsOnMinMax,
+  getPercentage,
   navigationsOnPage
 }
