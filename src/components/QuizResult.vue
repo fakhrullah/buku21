@@ -38,12 +38,14 @@
 </template>
 
 <script>
+import { getPercentage } from './../assets/lib/quiz-helper'
+
 export default {
   name: 'quiz-result',
   props: ['countingPercent', 'correct', 'wrong', 'unanswered', 'questionsSum'],
   computed: {
     markInPercentage () {
-      let value = (this.correct / this.questionsSum) * 100
+      let value = getPercentage(this.correct, this.questionsSum)
       return `${value} %`
     }
   }
