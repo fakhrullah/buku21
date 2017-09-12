@@ -20,24 +20,25 @@ export default {
 </script>
 
 <style lang="postcss">
-ul.main {
+.main {
   text-align: left;
   padding: 0;
   margin: 0;
 
-  li {
+  .chapter {
     list-style: none;
   }
 
-  li > a {
+  .chapter > a {
     display: block;
-    background-color: var(--gray-light-alpha);
+    background-color: var(--color-bg-primary);
+    color: var(--color-fg-primary);
     text-decoration: none;
     padding: var(--ws-m) var(--ws-l);
   }
 
-  li > a:hover {
-    background-color: white;
+  .chapter > a:hover {
+    background-color: var(--color-bg-primary-dark);
   }
 }
 </style>
