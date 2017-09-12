@@ -43,6 +43,14 @@ export default {
         var(--color-primary-dark-near),
         var(--color-primary)
       );
+
+    /* font */
+    text-transform: uppercase;
+    font-family: --font-sans;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-shadow: 1px 1px 0 var(--gray);
   }
 
   .chapter > a:hover {

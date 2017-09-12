@@ -1,0 +1,14 @@
+:root {
+  --main-font: var(--font-sans);
+
+  /* font */
+  --font-sans: Noto, Roboto, sans-serif;
+  --font-serif: serif;
+  --font-monospace: monospace;
+
+  /* heading and body */
+  --font-heading: var(--font-sans);
+
+  --font-sub-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+}
