@@ -22,7 +22,6 @@
       :correct="result.correct"
       :wrong="result.wrong"
       :unanswered="result.unanswered"
-      :questions-sum="questionsSum"
       :counting-percent="result.countingProgress"
       >
 
