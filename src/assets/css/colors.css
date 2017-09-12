@@ -1,13 +1,11 @@
 :root {
   /* ea6e91-c14d76-a31679-5c0087-2f004f */
   --color-primary-dark: #a31679;
+  --color-primary-dark-near: #b0466c;
   --color-primary: #c14d76;
+  --color-primary-light-near: #c65d82;
   --color-primary-light: #ea6e91;
 
-  /* foreground */
-  --color-fg-primary: white;
-
-  /* background */
-  --color-bg-primary: var(--color-primary);
-  --color-bg-primary-dark: var(--color-primary-dark);
+  --color-accent-dark: #2f004f;
+  --color-accent: #5c0087;
 }

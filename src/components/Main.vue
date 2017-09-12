@@ -31,14 +31,28 @@ export default {
 
   .chapter > a {
     display: block;
-    background-color: var(--color-bg-primary);
-    color: var(--color-fg-primary);
     text-decoration: none;
-    padding: var(--ws-m) var(--ws-l);
+    padding: var(--ws-l);
+
+    /* color */
+    background-color: var(--color-primary);
+    color: white;
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-primary-dark-near),
+        var(--color-primary)
+      );
   }
 
   .chapter > a:hover {
-    background-color: var(--color-bg-primary-dark);
+    background-color: var(--color-primary-dark);
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-primary-light-near),
+        var(--color-primary)
+      );
   }
 }
 </style>
