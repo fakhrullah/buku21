@@ -3,7 +3,7 @@
     <ul class="questions-list">
       <li class="question"
         :class="{wrong: !q.gotCorrect}"
-        v-for="(q, index) in questions">
+        v-for="(q, index) in userSubmited">
         <!-- TODO question id -->
         <div class="question-id">{{ index }}</div>
         <!-- for objective question -->
@@ -31,7 +31,27 @@
 <script>
 export default {
   name: 'quiz-review',
-  props: ['questions']
+  props: ['questions'],
+  computed: {
+    userSubmited () {
+      let userSubmited = []
+      this.questions.forEach(q => {
+        let submited = {}
+        submited.question = q.question
+        submited.gotCorrect = false
+        // only handle objective question
+        q.answers.forEach(a => {
+          if (a.isCorrect) submited.correctAnswer = a.answer
+          if (a.isChoosed) {
+            submited.userAnswer = a.answer
+            if (a.isCorrect) submited.gotCorrect = true
+          }
+        })
+        userSubmited.push(submited)
+      })
+      return userSubmited
+    }
+  }
 }
 </script>
 

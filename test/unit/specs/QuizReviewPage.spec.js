@@ -6,15 +6,17 @@ describe('QuizReview.vue', () => {
   it('should render objective quiz correct when user submit correct answer', () => {
     const Constructor = Vue.extend(QuizReviewPage)
     const vm = new Constructor({
-      propsData: {
-        questions: [
-          {
-            question: 'Short simple one line question.',
-            gotCorrect: true,
-            correctAnswer: 'correct answer',
-            userAnswer: 'correct answer'
-          }
-        ]
+      computed: {
+        userSubmited () {
+          return [
+            {
+              question: 'Short simple one line question.',
+              gotCorrect: true,
+              correctAnswer: 'correct answer',
+              userAnswer: 'correct answer'
+            }
+          ]
+        }
       }
     }).$mount()
     expect(vm.$el.querySelectorAll('.questions-list .question').length)
@@ -32,15 +34,17 @@ describe('QuizReview.vue', () => {
   it('should render objective quiz correct when user submit wrong answer', () => {
     const Constructor = Vue.extend(QuizReviewPage)
     const vm = new Constructor({
-      propsData: {
-        questions: [
-          {
-            question: 'Short simple one line question.',
-            gotCorrect: false,
-            correctAnswer: 'correct answer',
-            userAnswer: 'wrong answer'
-          }
-        ]
+      computed: {
+        userSubmited () {
+          return [
+            {
+              question: 'Short simple one line question.',
+              gotCorrect: false,
+              correctAnswer: 'correct answer',
+              userAnswer: 'wrong answer'
+            }
+          ]
+        }
       }
     }).$mount()
     expect(vm.$el.querySelectorAll('.questions-list .question').length)
@@ -58,14 +62,16 @@ describe('QuizReview.vue', () => {
   it('should render objective quiz correct when user submit unanswered question', () => {
     const Constructor = Vue.extend(QuizReviewPage)
     const vm = new Constructor({
-      propsData: {
-        questions: [
-          {
-            question: 'Short simple one line question.',
-            gotCorrect: false,
-            correctAnswer: 'correct answer'
-          }
-        ]
+      computed: {
+        userSubmited () {
+          return [
+            {
+              question: 'Short simple one line question.',
+              gotCorrect: false,
+              correctAnswer: 'correct answer'
+            }
+          ]
+        }
       }
     }).$mount()
     expect(vm.$el.querySelectorAll('.questions-list .question').length)
