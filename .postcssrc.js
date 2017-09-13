@@ -5,6 +5,7 @@ module.exports = {
     // to edit target browsers: use "browserslist" field in package.json
     // "autoprefixer": {}
     "postcss-cssnext": {},
-    "postcss-nested": {}
+    "postcss-nested": {},
+    "postcss-color-function": {} // color() -> did not work, may be bcoz postcss not 
   }
 }

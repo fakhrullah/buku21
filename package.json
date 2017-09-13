@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
-    "post-loader": "^1.1.2",
     "vue": "^2.3.3",
     "vue-router": "^2.6.0"
   },
@@ -70,8 +69,9 @@
     "ora": "^1.2.0",
     "phantomjs-prebuilt": "^2.1.14",
     "postcss": "^6.0.11",
+    "postcss-color-function": "^4.0.0",
     "postcss-cssnext": "^3.0.2",
-    "postcss-nested": "^1.0.1",
+    "postcss-nested": "^2.1.2",
     "rimraf": "^2.6.0",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
@@ -81,7 +81,7 @@
     "stylelint-config-standard": "^17.0.0",
     "stylelint-processor-html": "^1.0.0",
     "url-loader": "^0.5.8",
-    "vue-loader": "^12.1.0",
+    "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",

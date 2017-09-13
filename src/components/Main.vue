@@ -20,24 +20,47 @@ export default {
 </script>
 
 <style lang="postcss">
-ul.main {
+.main {
   text-align: left;
   padding: 0;
   margin: 0;
 
-  li {
+  .chapter {
     list-style: none;
   }
 
-  li > a {
+  .chapter > a {
     display: block;
-    background-color: var(--gray-light-alpha);
     text-decoration: none;
-    padding: var(--ws-m) var(--ws-l);
+    padding: var(--ws-l);
+
+    /* color */
+    background-color: var(--color-primary);
+    color: white;
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-primary-dark-near),
+        var(--color-primary)
+      );
+
+    /* font */
+    text-transform: uppercase;
+    font-family: --font-sans;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-shadow: 1px 1px 0 var(--gray);
   }
 
-  li > a:hover {
-    background-color: white;
+  .chapter > a:hover {
+    background-color: var(--color-primary-dark);
+    background-image:
+      linear-gradient(
+        to top,
+        var(--color-primary-light-near),
+        var(--color-primary)
+      );
   }
 }
 </style>
