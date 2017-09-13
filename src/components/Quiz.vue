@@ -32,7 +32,7 @@
       -->
       <quiz-review
         v-if="result.isCalculated"
-        :questions="userSubmited"
+        :questions="questions"
         ></quiz-review>
     </quiz-result>
 
@@ -97,24 +97,6 @@ export default {
   computed: {
     questionsSum () {
       return parseInt(this.questions.length)
-    },
-    userSubmited () {
-      let userSubmited = []
-      this.questions.forEach(q => {
-        let submited = {}
-        submited.question = q.question
-        submited.gotCorrect = false
-        // only handle objective question
-        q.answers.forEach(a => {
-          if (a.isCorrect) submited.correctAnswer = a.answer
-          if (a.isChoosed) {
-            submited.userAnswer = a.answer
-            if (a.isCorrect) submited.gotCorrect = true
-          }
-        })
-        userSubmited.push(submited)
-      })
-      return userSubmited
     }
   },
   methods: {
