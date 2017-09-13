@@ -10,4 +10,8 @@
   /* accent */
   --color-accent-dark: #2f004f;
   --color-accent: #5c0087;
+
+  /* white */
+  --color-white-alpha-dark: rgba(255, 255, 255, 0.1);
+  --color-white-alpha: rgba(255, 255, 255, 0.2);
 }

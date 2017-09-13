@@ -46,12 +46,12 @@
       <button v-show="isNeededNavigations('quiz-goto-prev-button')"
         class="prev-question"
         @click="goToPreviousQuestion">
-        &lt;--
+        &lt;
       </button>
       <button v-show="isNeededNavigations('quiz-goto-next-button')"
         class="next-question"
         @click="goToNextQuestion">
-        --&gt;
+        &gt;
       </button>
       <button v-show="isNeededNavigations('quiz-get-result-button')"
         class="check-answer"
@@ -248,18 +248,38 @@ export default {
 
   button.next-question,
   button.prev-question {
-    width: 50%;
+    height: var(--ws-xxl);
     margin: 0;
     position: fixed;
-    bottom: 0;
+    bottom: calc(50% + 16px);
+    font-size: 32px;
+    font-family: var(--font-monospace);
+    font-weight: bolder;
+    background-color: var(--color-white-alpha);
   }
 
   button.prev-question {
     left: 0;
+
+    &:hover {
+      left: -2px;
+    }
+
+    &:active {
+      left: -4px;
+    }
   }
 
   button.next-question {
     right: 0;
+
+    &:hover {
+      right: -2px;
+    }
+
+    &:active {
+      right: -3px;
+    }
   }
 
   button.check-answer {
