@@ -222,12 +222,28 @@ export default {
 
 <style lang="postcss">
 .quiz-navigation {
+  button {
+    padding-top: var(--ws-m);
+    padding-bottom: var(--ws-m);
+    background: transparent;
+    border: solid 2px rgba(255, 255, 255, 0.4);
+    color: white;
+
+    &:hover,
+    &:active {
+      background: var(--color-primary-light);
+    }
+  }
+
   button.start-quiz {
-    position: fixed;
+    margin-top: var(--ws-xxl);
     bottom: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
+    left: var(--ws-xl);
+    width: calc(100% - var(--ws-xxl));
+    display: block;
     text-transform: uppercase;
+    font-weight: bolder;
   }
 
   button.next-question,
