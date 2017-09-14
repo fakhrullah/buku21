@@ -9,7 +9,7 @@
         - Never show result instantly
     -->
     <div v-show="countingPercent < 100" class="loading counting progressbar">
-      <progress :value="countingPercent" max="100"></progress>
+      <bui-progress :value="countingPercent" max="100"></bui-progress>
     </div>
 
     <!-- show marks -->
@@ -39,9 +39,11 @@
 
 <script>
 import { getPercentage } from './../assets/lib/quiz-helper'
+import BuiProgress from '@/components/ui/BuiProgress'
 
 export default {
   name: 'quiz-result',
+  components: { BuiProgress },
   props: ['countingPercent', 'correct', 'wrong', 'unanswered'],
   computed: {
     markInPercentage () {
@@ -59,45 +61,13 @@ export default {
 .counting.progressbar {
   margin: var(--ws-xl) var(--ws-l);
 
-  progress {
-    appearance: none;
-    width: 100%;
-    border: none;
+  .progress {
     height: var(--ws-l);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
-  progress[value]::-webkit-progress-value {
-    background-image:
-      -webkit-linear-gradient(
-        -45deg,
-        transparent 33%,
-        var(--gray-light-alpha) 33%,
-        var(--gray-light-alpha) 66%,
-        transparent 66%
-      ),
-      -webkit-linear-gradient(
-        left,
-        var(--black),
-        var(--gray-light) 200%
-      );
-    background-size: 36px 20px, 100% 100%;
-  }
-
-  progress[value]::-moz-progress-bar {
-    background-image:
-      -moz-linear-gradient(
-        -45deg,
-        transparent 33%,
-        var(--gray-light-alpha) 33%,
-        var(--gray-light-alpha) 66%,
-        transparent 66%
-      ),
-      -moz-linear-gradient(
-        left,
-        var(--black),
-        var(--gray-light) 200%
-      );
-    background-size: 36px 20px, 100% 100%;
+  .progress-bar {
+    background-color: rgba(255, 255, 255, 0.6);
   }
 }
 

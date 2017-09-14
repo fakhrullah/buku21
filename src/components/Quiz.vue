@@ -235,7 +235,8 @@ export default {
     }
   }
 
-  button.start-quiz {
+  button.start-quiz,
+  button.check-answer {
     margin-top: var(--ws-xxl);
     bottom: 0;
     position: relative;
@@ -280,11 +281,6 @@ export default {
     &:active {
       right: -3px;
     }
-  }
-
-  button.check-answer {
-    display: block;
-    margin: 0 auto;
   }
 }
 </style>
