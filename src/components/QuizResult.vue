@@ -98,7 +98,7 @@ export default {
 
     .per {
       position: absolute;
-      font-size: 0.7em;
+      font-size: initial;
       bottom: calc(var(--ws-m) * -1);
       color: rgba(255, 255, 255, 0.6);
     }
