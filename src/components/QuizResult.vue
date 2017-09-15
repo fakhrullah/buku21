@@ -19,16 +19,16 @@
 
     <div v-show="countingPercent >= 100" class="mark-in-detail">
       <div class="correct-answers">
-        <div>BETUL</div>
-        <div>{{ correct }}</div>
+        <div class="explain">BETUL</div>
+        <div class="count">{{ correct }} <small class="per">/ {{ questionsSum }}</small></div>
       </div>
       <div class="wrong-answers">
-        <div>SALAH</div>
-        <div>{{ wrong }}</div>
+        <div class="explain">SALAH</div>
+        <div class="count">{{ wrong }} <small class="per">/ {{ questionsSum }}</small></div>
       </div>
       <div v-if="unanswered" class="unanswered">
-        <div>TAK JAWAB</div>
-        <div>{{ unanswered }}</div>
+        <div class="explain">TAK JAWAB</div>
+        <div class="count">{{ unanswered }} <small class="per">/ {{ questionsSum }}</small></div>
       </div>
     </div>
 
@@ -48,7 +48,7 @@ export default {
   computed: {
     markInPercentage () {
       let value = getPercentage(this.correct, this.questionsSum)
-      return `${value} %`
+      return `${value}%`
     },
     questionsSum () {
       return this.correct + this.wrong + this.unanswered
@@ -72,9 +72,9 @@ export default {
 }
 
 .mark-in-percentage {
-  font-size: 300%;
-  margin-top: var(--ws-xl);
-  margin-bottom: var(--ws-xl);
+  font-size: 450%;
+  margin-top: var(--ws-l);
+  margin-bottom: var(--ws-l);
 }
 
 .mark-in-detail {
@@ -83,6 +83,25 @@ export default {
 
   div {
     flex-grow: 1;
+  }
+
+  .explain {
+    font-size: 80%;
+    padding-bottom: 0.6em;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .count {
+    font-size: 1.4em;
+    position: relative;
+
+    .per {
+      position: absolute;
+      font-size: 0.7em;
+      bottom: calc(var(--ws-m) * -1);
+      color: rgba(255, 255, 255, 0.6);
+    }
   }
 }
 </style>
