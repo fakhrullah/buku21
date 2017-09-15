@@ -63,11 +63,11 @@ export default {
 
   .progress {
     height: var(--ws-l);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
   }
 
   .progress-bar {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
   }
 }
 
