@@ -1,40 +1,52 @@
 <template>
   <div class="quiz">
     <!-- front page - contain welcome word-->
-    <quiz-welcome-page
-      v-show="isCurrentView('quiz-welcome-page')"
-      :quiz-name="quizName"
-      :questions-sum="questionsSum"></quiz-welcome-page>
+    <transition
+      leave-active-class="animated slideOutLeft">
+      <quiz-welcome-page
+        class="quiz-page"
+        v-show="isCurrentView('quiz-welcome-page')"
+        :quiz-name="quizName"
+        :questions-sum="questionsSum"></quiz-welcome-page>
+    </transition>
 
     <!-- questions - contain a lot of question -->
-    <quiz-question
-      v-show="isCurrentView('quiz-question-' + index)"
-      v-for="(q, index) in questions" 
-      :key="index"
-      :class="'quiz-question-' + index"
-      :question="q.question"
-      :qtype="q.type"
-      :answers="q.answers"></quiz-question>
+    <transition-group
+      :enter-active-class="slide"
+      :leave-active-class="slideOut">
+      <quiz-question
+        v-show="isCurrentView('quiz-question-' + index)"
+        v-for="(q, index) in questions" 
+        :key="index"
+        :class="'quiz-question-' + index"
+        :question="q.question"
+        :qtype="q.type"
+        :answers="q.answers"></quiz-question>
+    </transition-group>
 
     <!-- result page - show how much user got correct -->
-    <quiz-result
-      v-show="isCurrentView('quiz-result')"
-      :correct="result.correct"
-      :wrong="result.wrong"
-      :unanswered="result.unanswered"
-      :counting-percent="result.countingProgress"
-      >
+    <transition
+      :enter-active-class="slide"
+      :leave-active-class="slideOut">
+      <quiz-result
+        v-show="isCurrentView('quiz-result')"
+        :correct="result.correct"
+        :wrong="result.wrong"
+        :unanswered="result.unanswered"
+        :counting-percent="result.countingProgress"
+        >
 
-      <!-- review page
-        - show list of question with status correct or wrong, 
-        and clickable to question page 
-        and show user answer and correct answer
-      -->
-      <quiz-review
-        v-if="result.isCalculated"
-        :questions="questions"
-        ></quiz-review>
-    </quiz-result>
+        <!-- review page
+          - show list of question with status correct or wrong, 
+          and clickable to question page 
+          and show user answer and correct answer
+        -->
+        <quiz-review
+          v-if="result.isCalculated"
+          :questions="questions"
+          ></quiz-review>
+      </quiz-result>
+    </transition>
 
     <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
@@ -91,12 +103,25 @@ export default {
         wrong: 0,
         unanswered: 0,
         countingProgress: 0
-      }
+      },
+      pageDepth: {
+        before: 0,
+        current: 0
+      },
+      reverseAnimate: false
     }
   },
   computed: {
     questionsSum () {
       return parseInt(this.questions.length)
+    },
+    slide () {
+      if (this.pageDepth.before <= this.pageDepth.current) return 'animated slideInRight'
+      else return 'animated slideInLeft'
+    },
+    slideOut () {
+      if (this.pageDepth.before > this.pageDepth.current) return 'animated slideOutRight'
+      else return 'animated slideOutLeft'
     }
   },
   methods: {
@@ -159,6 +184,10 @@ export default {
       console.log('start quiz')
       this.currentView = 'quiz-question-0'
       this.neededNavigationsButton = navigationsOnPage('quiz-question')
+
+      // register page depth to be used in transition
+      this.pageDepth.before = this.pageDepth.current
+      this.pageDepth.current++
     },
     goToNextQuestion () {
       let currentQuestionIndex = parseInt(this.currentView.split('-')[2])
@@ -172,6 +201,10 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + nextIndex
       }
+
+      // register page depth to be used in transition
+      this.pageDepth.before = this.pageDepth.current
+      this.pageDepth.current++
     },
     goToPreviousQuestion () {
       let currentQuestionIndex
@@ -184,6 +217,10 @@ export default {
           // move to last question
           this.currentView = 'quiz-question-' + (this.questions.length - 1)
           this.neededNavigationsButton = navigationsOnPage('quiz-question')
+
+          // register page depth to be used in transition
+          this.pageDepth.before = this.pageDepth.current
+          this.pageDepth.current--
         }
         return
       } else {
@@ -198,6 +235,10 @@ export default {
         console.log('this is first question!')
       } else {
         this.currentView = 'quiz-question-' + prevIndex
+
+        // register page depth to be used in transition
+        this.pageDepth.before = this.pageDepth.current
+        this.pageDepth.current--
       }
     },
     getQuizData () {
@@ -221,6 +262,13 @@ export default {
 </script>
 
 <style lang="postcss">
+.quiz-page {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .quiz-navigation {
   button {
     padding-top: var(--ws-m);
@@ -282,5 +330,9 @@ export default {
       right: -3px;
     }
   }
+}
+
+.animated {
+  animation-duration: 0.5s;
 }
 </style>

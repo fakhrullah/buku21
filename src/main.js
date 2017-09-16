@@ -8,6 +8,7 @@ import './assets/css/variables.css'
 import './assets/css/colors.css'
 import './assets/css/font.css'
 import './assets/css/transition.css'
+import 'animate.css'
 
 Vue.config.productionTip = false
 
