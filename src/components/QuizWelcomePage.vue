@@ -3,6 +3,7 @@
     <h2>{{ quizName }}</h2>
     <p>{{ questionsSum }} soalan</p>
     <p>Selamat menjawab. Semoga berjaya.</p>
+    <slot name="startbutton"></slot>
   </div>
 </template>
 

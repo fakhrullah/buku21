@@ -7,7 +7,15 @@
         class="quiz-page"
         v-show="isCurrentView('quiz-welcome-page')"
         :quiz-name="quizName"
-        :questions-sum="questionsSum"></quiz-welcome-page>
+        :questions-sum="questionsSum">
+        <div slot="startbutton" class="quiz-navigation">
+          <button v-show="isNeededNavigations('quiz-start-button')"
+            class="start-quiz"
+            @click="startQuiz">
+            Mula
+          </button>
+        </div>
+        </quiz-welcome-page>
     </transition>
 
     <!-- questions - contain a lot of question -->
@@ -35,6 +43,13 @@
         :unanswered="result.unanswered"
         :counting-percent="result.countingProgress"
         >
+        <div class="quiz-navigation" slot="checkanswerbutton">
+          <button v-show="isNeededNavigations('quiz-get-result-button')"
+            class="check-answer"
+            @click="getResult">
+            Kira Markah
+          </button>
+        </div>
 
         <!-- review page
           - show list of question with status correct or wrong, 
@@ -50,11 +65,6 @@
 
     <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
-      <button v-show="isNeededNavigations('quiz-start-button')"
-        class="start-quiz"
-        @click="startQuiz">
-        Mula
-      </button>
       <button v-show="isNeededNavigations('quiz-goto-prev-button')"
         class="prev-question"
         @click="goToPreviousQuestion">
@@ -64,11 +74,6 @@
         class="next-question"
         @click="goToNextQuestion">
         &gt;
-      </button>
-      <button v-show="isNeededNavigations('quiz-get-result-button')"
-        class="check-answer"
-        @click="getResult">
-        Kira Markah
       </button>
       <button v-show="isNeededNavigations('quiz-menu-button')"
         class="menu">

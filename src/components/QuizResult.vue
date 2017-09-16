@@ -12,6 +12,8 @@
       <bui-progress :value="countingPercent" max="100"></bui-progress>
     </div>
 
+    <slot name="checkanswerbutton"></slot>
+
     <!-- show marks -->
     <div v-show="countingPercent >= 100" class="mark-in-percentage">
       {{ markInPercentage }}
