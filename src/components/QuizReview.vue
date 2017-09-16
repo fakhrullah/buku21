@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz-review quiz-page">
+  <div class="quiz-review">
     <ul class="questions-list">
       <li class="question"
         :class="{wrong: !q.gotCorrect, correct: q.gotCorrect}"
