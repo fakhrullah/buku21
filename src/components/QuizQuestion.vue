@@ -45,7 +45,7 @@ export default {
 <style lang="postcss" scoped>
 .question {
   text-align: left;
-  padding-top: var(--ws-m);
+  padding: var(--ws-xl) var(--ws-m);
 }
 
 .objective {
@@ -53,18 +53,27 @@ export default {
     display: block;
     width: 100%;
     padding: var(--ws-l) 0;
-    background-color: var(--gray-lighter-alpha);
+    background-color: var(--gray-light-alpha);
+    color: white;
 
     /* Border */
-    border-top: solid 1px var(--gray-light-alpha);
-    border-bottom: solid 1px var(--gray-light-alpha);
+    border-top: none;
+    border-bottom: solid 1px var(--color-white-alpha);
     border-left: none;
     border-right: none;
+
+    &:first-child {
+      border-top: solid 1px var(--color-white-alpha);
+    }
+
+    &:hover,
+    &:active {
+      background-color: var(--gray-alpha);
+    }
   }
 
   .choosed {
-    background-color: var(--gray-alpha);
-    color: white;
+    background-color: var(--gray-dark-alpha);
   }
 }
 

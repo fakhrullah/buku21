@@ -16,7 +16,8 @@
   --gray-lighter: #ccc;
 
   /* Gray with opacity */
-  --gray-dark-alpha: rgba(0, 0, 0, 0.8);
+  --gray-darker-alpha: rgba(0, 0, 0, 0.8);
+  --gray-dark-alpha: rgba(0, 0, 0, 0.5);
   --gray-alpha: rgba(0, 0, 0, 0.4);
   --gray-light-alpha: rgba(0, 0, 0, 0.05);
   --gray-lighter-alpha: rgba(0, 0, 0, 0.03);
@@ -33,4 +34,5 @@
   --ws-m: 8px;
   --ws-l: 16px;
   --ws-xl: 32px;
+  --ws-xxl: 64px;
 }

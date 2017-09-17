@@ -1,62 +1,79 @@
 <template>
   <div class="quiz">
     <!-- front page - contain welcome word-->
-    <quiz-welcome-page
-      v-show="isCurrentView('quiz-welcome-page')"
-      :quiz-name="quizName"
-      :questions-sum="questionsSum"></quiz-welcome-page>
+    <transition
+      leave-active-class="animated slideOutLeft">
+      <quiz-welcome-page
+        class="quiz-page"
+        v-show="isCurrentView('quiz-welcome-page')"
+        :quiz-name="quizName"
+        :questions-sum="questionsSum">
+        <div slot="startbutton" class="quiz-navigation">
+          <button v-show="isNeededNavigations('quiz-start-button')"
+            class="start-quiz"
+            @click="startQuiz">
+            Mula
+          </button>
+        </div>
+        </quiz-welcome-page>
+    </transition>
 
     <!-- questions - contain a lot of question -->
-    <quiz-question
-      v-show="isCurrentView('quiz-question-' + index)"
-      v-for="(q, index) in questions" 
-      :key="index"
-      :class="'quiz-question-' + index"
-      :question="q.question"
-      :qtype="q.type"
-      :answers="q.answers"></quiz-question>
+    <transition-group
+      :enter-active-class="slide"
+      :leave-active-class="slideOut">
+      <quiz-question
+        v-show="isCurrentView('quiz-question-' + index)"
+        v-for="(q, index) in questions" 
+        :key="index"
+        :class="'quiz-question-' + index"
+        :question="q.question"
+        :qtype="q.type"
+        :answers="q.answers"></quiz-question>
+    </transition-group>
 
     <!-- result page - show how much user got correct -->
-    <quiz-result
-      v-show="isCurrentView('quiz-result')"
-      :correct="result.correct"
-      :wrong="result.wrong"
-      :unanswered="result.unanswered"
-      :counting-percent="result.countingProgress"
-      >
+    <transition
+      :enter-active-class="slide"
+      :leave-active-class="slideOut">
+      <quiz-result
+        v-show="isCurrentView('quiz-result')"
+        :correct="result.correct"
+        :wrong="result.wrong"
+        :unanswered="result.unanswered"
+        :counting-percent="result.countingProgress"
+        >
+        <div class="quiz-navigation" slot="checkanswerbutton">
+          <button v-show="isNeededNavigations('quiz-get-result-button')"
+            class="check-answer"
+            @click="getResult">
+            Kira Markah
+          </button>
+        </div>
 
-      <!-- review page
-        - show list of question with status correct or wrong, 
-        and clickable to question page 
-        and show user answer and correct answer
-      -->
-      <quiz-review
-        v-if="result.isCalculated"
-        :questions="questions"
-        ></quiz-review>
-    </quiz-result>
+        <!-- review page
+          - show list of question with status correct or wrong, 
+          and clickable to question page 
+          and show user answer and correct answer
+        -->
+        <quiz-review
+          v-if="result.isCalculated"
+          :questions="questions"
+          ></quiz-review>
+      </quiz-result>
+    </transition>
 
     <!-- quiz navigation button. start, next, prev, count, menu -->
     <div class="quiz-navigation">
-      <button v-show="isNeededNavigations('quiz-start-button')"
-        class="start-quiz"
-        @click="startQuiz">
-        Mula
-      </button>
       <button v-show="isNeededNavigations('quiz-goto-prev-button')"
         class="prev-question"
         @click="goToPreviousQuestion">
-        &lt;--
+        &lt;
       </button>
       <button v-show="isNeededNavigations('quiz-goto-next-button')"
         class="next-question"
         @click="goToNextQuestion">
-        --&gt;
-      </button>
-      <button v-show="isNeededNavigations('quiz-get-result-button')"
-        class="check-answer"
-        @click="getResult">
-        Kira Markah
+        &gt;
       </button>
       <button v-show="isNeededNavigations('quiz-menu-button')"
         class="menu">
@@ -91,12 +108,25 @@ export default {
         wrong: 0,
         unanswered: 0,
         countingProgress: 0
-      }
+      },
+      pageDepth: {
+        before: 0,
+        current: 0
+      },
+      reverseAnimate: false
     }
   },
   computed: {
     questionsSum () {
       return parseInt(this.questions.length)
+    },
+    slide () {
+      if (this.pageDepth.before <= this.pageDepth.current) return 'animated slideInRight'
+      else return 'animated slideInLeft'
+    },
+    slideOut () {
+      if (this.pageDepth.before > this.pageDepth.current) return 'animated slideOutRight'
+      else return 'animated slideOutLeft'
     }
   },
   methods: {
@@ -159,6 +189,10 @@ export default {
       console.log('start quiz')
       this.currentView = 'quiz-question-0'
       this.neededNavigationsButton = navigationsOnPage('quiz-question')
+
+      // register page depth to be used in transition
+      this.pageDepth.before = this.pageDepth.current
+      this.pageDepth.current++
     },
     goToNextQuestion () {
       let currentQuestionIndex = parseInt(this.currentView.split('-')[2])
@@ -172,6 +206,10 @@ export default {
       } else {
         this.currentView = 'quiz-question-' + nextIndex
       }
+
+      // register page depth to be used in transition
+      this.pageDepth.before = this.pageDepth.current
+      this.pageDepth.current++
     },
     goToPreviousQuestion () {
       let currentQuestionIndex
@@ -184,6 +222,10 @@ export default {
           // move to last question
           this.currentView = 'quiz-question-' + (this.questions.length - 1)
           this.neededNavigationsButton = navigationsOnPage('quiz-question')
+
+          // register page depth to be used in transition
+          this.pageDepth.before = this.pageDepth.current
+          this.pageDepth.current--
         }
         return
       } else {
@@ -198,6 +240,10 @@ export default {
         console.log('this is first question!')
       } else {
         this.currentView = 'quiz-question-' + prevIndex
+
+        // register page depth to be used in transition
+        this.pageDepth.before = this.pageDepth.current
+        this.pageDepth.current--
       }
     },
     getQuizData () {
@@ -221,34 +267,77 @@ export default {
 </script>
 
 <style lang="postcss">
+.quiz-page {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .quiz-navigation {
-  button.start-quiz {
-    position: fixed;
+  button {
+    padding-top: var(--ws-m);
+    padding-bottom: var(--ws-m);
+    background: transparent;
+    border: solid 2px rgba(255, 255, 255, 0.4);
+    color: white;
+
+    &:hover,
+    &:active {
+      background: var(--color-primary-light);
+    }
+  }
+
+  button.start-quiz,
+  button.check-answer {
+    margin-top: var(--ws-xxl);
     bottom: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
+    left: var(--ws-xl);
+    width: calc(100% - var(--ws-xxl));
+    display: block;
     text-transform: uppercase;
+    font-weight: bolder;
   }
 
   button.next-question,
   button.prev-question {
-    width: 50%;
+    height: var(--ws-xxl);
     margin: 0;
     position: fixed;
-    bottom: 0;
+    bottom: calc(50% + 16px);
+    font-size: 32px;
+    font-family: var(--font-monospace);
+    font-weight: bolder;
+    background-color: var(--color-white-alpha);
   }
 
   button.prev-question {
     left: 0;
+
+    &:hover {
+      left: -2px;
+    }
+
+    &:active {
+      left: -4px;
+    }
   }
 
   button.next-question {
     right: 0;
-  }
 
-  button.check-answer {
-    display: block;
-    margin: 0 auto;
+    &:hover {
+      right: -2px;
+    }
+
+    &:active {
+      right: -3px;
+    }
   }
+}
+
+.animated {
+  animation-duration: 0.5s;
 }
 </style>

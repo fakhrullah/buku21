@@ -32,6 +32,7 @@ html {
     );
     */
   color: white;
+  overflow-x: hidden;
 }
 
 #app {

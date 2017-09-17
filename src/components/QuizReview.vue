@@ -1,11 +1,9 @@
 <template>
-  <div class="quiz-review quiz-page">
+  <div class="quiz-review">
     <ul class="questions-list">
       <li class="question"
-        :class="{wrong: !q.gotCorrect}"
+        :class="{wrong: !q.gotCorrect, correct: q.gotCorrect}"
         v-for="(q, index) in userSubmited">
-        <!-- TODO question id -->
-        <div class="question-id">{{ index }}</div>
         <!-- for objective question -->
         <div>
           <div class="user-answer-status">
@@ -65,17 +63,22 @@ export default {
   }
 
   .question {
-    display: flex;
     border-top: solid 1px var(--gray-light-alpha);
-    padding: var(--ws-m) 0;
+    padding: var(--ws-l) var(--ws-m);
   }
 
   .question-body {
     margin-bottom: var(--ws-l);
   }
 
+  .correct {
+    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(60, 255, 0, 0.6);
+  }
+
   .wrong {
-    background-color: var(--gray-lighter-alpha);
+    background-color: var(--gray-light-alpha);
+    background-color: rgba(255, 98, 98, 0.6);
   }
 
   .question-id {
@@ -84,15 +87,19 @@ export default {
   }
 
   .user-answer-status {
-    color: var(--gray-alpha);
+    color: rgba(255, 255, 255, 0.8);
     font-style: oblique;
-    font-size: 85%;
+    font-size: 80%;
     margin-top: var(--ws-m);
     margin-bottom: var(--ws-m);
+
+    .wrong &::before {
+      content: "✗✗✗";
+    }
   }
 
   .question-answer {
-    margin: var(--ws-s) 0;
+    margin: var(--ws-m) 0;
   }
 
   .wrong-answer::before {
