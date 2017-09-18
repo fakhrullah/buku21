@@ -21,8 +21,8 @@ describe('BuiProgress.vue', () => {
   it('should render progress bar with 40% progress', () => {
     const vm = new Constructor({
       propsData: {
-        value: 40,
-        max: 100
+        value: 4,
+        max: 10
       }
     }).$mount()
 
