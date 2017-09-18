@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     width () {
-      return getNPerAllDependsOnMinMax(this.value, this.max, 0, this.max) + '%'
+      return getNPerAllDependsOnMinMax(this.value, this.max, 0, 100) + '%'
     }
   }
 }
