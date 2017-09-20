@@ -1,30 +1,13 @@
-# enota
+# Buku21 - Buku untuk abad 21
 
-> Nota alaf baru: ada video dan muzik. Setiap bab disertakan kuiz.
+> Buku alaf baru. Buku boleh mengandungi teks, video, muzik dan boleh ada halaman khas untuk kuiz.
+> 
+> _psst: sebenarnya web je pun. Tapi boleh jadi app, dan tak perlu internet =D_
 
-## Build Setup
+## Cara buat Buku21 anda sendiri
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+1. Muat turun release.zip.
+2. Ekstrak fail zip.
+3. Lihat fail `buku21.json`. Ubah suai fail ini untuk senarai kandungan buku anda.
+4. Lihat fail `note.json`. Ini adalah contoh fail untuk halaman nota. Salin dan tampal fail ini, kemudian ubah suai nama fail dan isi supaya menjadi halaman nota yang anda ingin.
+5. Lihat fail `quiz.json`. Ini adalah contoh fail untuk halaman quiz. Salin dan tampal fail ini, kemudian ubah suai nama fail dan isi supaya menjadi halaman kuiz yang anda inginkan.

@@ -1,0 +1,24 @@
+{
+    "chapters": [
+        {
+            "id": 1,
+            "name": "Note Sample",
+            "route": {
+                "name": "note",
+                "params": {
+                    "data": "note"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "name": "Quiz",
+            "route": {
+                "name": "quiz",
+                "params": {
+                    "data": "quiz"
+                }
+            }
+        }
+    ]
+}

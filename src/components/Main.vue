@@ -1,20 +1,49 @@
 <template>
-  <ul class="main">
-    <li  v-for="chapter in chapters"
-      :key="chapter.id"
-      class="chapter">
-      <router-link :to="chapter.route">{{ chapter.name }}</router-link>
-    </li>
-  </ul>
+  <div class="contents">
+    <div class="error" v-if="isError()">
+      {{ this.error }}
+    </div>
+    <ul class="main" v-else>
+      <li  v-for="chapter in enota.chapters"
+        :key="chapter.id"
+        class="chapter">
+        <router-link :to="chapter.route">{{ chapter.name }}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import * as enota from './../data/enota.json'
 
 export default {
   name: 'main',
   data () {
-    return enota
+    return {
+      enota: {},
+      error: 'Loading ...'
+    }
+  },
+  methods: {
+    isError () {
+      if (this.error.trim() === '') return false
+      else return true
+    },
+    getContentsData () {
+      fetch('static/buku21.json')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          this.error = ''
+          this.enota = data
+        })
+        .catch(err => {
+          console.log(err)
+          this.error = 'Contents file not found. Write enota.json'
+        })
+    }
+  },
+  created () {
+    this.getContentsData()
   }
 }
 </script>
